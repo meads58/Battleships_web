@@ -2,11 +2,10 @@ require 'sinatra/base'
 
 class BattleShips < Sinatra::Base
   get '/' do
-    name = "meads"
-    'Hello BattleShips!'
+    "<a href='/play'>Play</a>"
   end
-  get '/hello' do
-    "hello"
+  get '/play' do
+    "hi"
   end
 
 
