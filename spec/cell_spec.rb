@@ -21,6 +21,12 @@ describe Cell do
     cell.content = ship
     expect(ship).to receive(:hit)
     cell.shoot
-
   end
+
+  it " displays S for a ship" do
+    cell.content = ship
+    expect(cell.view_display).to eq "S"
+  end
+
+
 end

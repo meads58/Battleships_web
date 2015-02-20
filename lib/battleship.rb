@@ -14,6 +14,7 @@ class Battleships < Sinatra::Base
   game = Game.new
 
 
+
   get '/' do
     erb :home
   end
@@ -26,11 +27,13 @@ class Battleships < Sinatra::Base
     if player = params[:name].empty?
       erb :home
     else
-     @player = Player.new(params[:name])
-     @ship = Ship.submarine
-     @board = Board.new({:size => 2, :content => Cell})
-     @board.place(@ship, :A1)
-
+     player = Player.new(params[:name])
+     session[:me] = player
+     ship = Ship.submarine
+     session[:ship] = ship
+     board = Board.new({:size => 2, :content => Cell})
+     session[:board] = board
+     board.place(ship, :A1)
      erb :play
    end
   end
@@ -40,11 +43,10 @@ class Battleships < Sinatra::Base
   end
 
   post '/shoot' do
-     @player
-     @ship
-     @board
-     @board
-    erb :play
+    shot = params[:shot]
+    session[:board].shoot_at(shot.to_sym)
+    redirect '/shoot'
+    #erb :play
   end
 
 

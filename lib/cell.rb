@@ -14,4 +14,11 @@ class Cell
   def hit?
     @hit
   end
+
+  def view_display
+    "S"
+  end
+
+
+
 end

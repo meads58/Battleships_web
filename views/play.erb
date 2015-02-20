@@ -1,9 +1,9 @@
-<h1>Welcome <%= @player.name.capitalize %></h1>
+<h1>Welcome <%= session[:me].name.capitalize %></h1>
 <table border="2" cellpadding="10" cellspacing="5">
-  <% @board.grid.values.each_slice(2).map do |row| %>
+  <% session[:board].grid.values.each_slice(2).map do |row| %>
     <tr>
       <% row.each do |content| %>
-          <td><%= content.content.class == Ship ? "Ship" : "Water" %></td>
+          <td><%= content.view_display %></td>
         <%end%>
     </tr>
   <%end%>
@@ -11,10 +11,11 @@
 
 
 
-<form action='/shoot' method='post'>
+<form action='/shoot' method="post">
    <input type="text" name="shot">
    <br>
   <input type="submit" value="Submit">
 </form>
 
+<%= session[:ship].inspect %>
 
